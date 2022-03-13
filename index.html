@@ -4,53 +4,185 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>game</title>
+    <link rel= "stylesheet" href="styles.css">
 </head>
 <body>
-    
+    <h3> SCISSORS, PAPER, STONE</h3>
+    <div class ="Buttons">
+        <button id="Button3"> Scissors </button>
+        <button id="Button2"> Paper</button>
+        <button id="Button1"> Stone </button>
+    </div>
+    <div class="scores">
+        <div class = "myscoreboard"> My Score </div>
+            <p id="myscores"> 0 </p>
+        <div class="computerScoreBoard">Computer Score</div>
+            <p id="computerscores"> 0 </p>
+    </div>
 </body>
+
 <script>
 
-function game() {
-    for (let i = 0; i < 5; i++) {
-        computerplay(), playround();
-    }
+let computerscore = 0;
+let myscore = 0;
 
+
+
+window.confirm("Welcome to my Scissors Paper Stone game. Play against the Computer. First to get 5 points, Win.");
+
+
+function winnnerAnnounce(){
+
+    if (computerscore === 5){
+        alert("Computer has 5 points, Computer Wins")
+        document.getElementById("Button3").disabled = true;
+        document.getElementById("Button2").disabled = true;
+        document.getElementById("Button1").disabled = true;
+        
+    }
+    if (myscore === 5){
+        alert("I  have 5 points, I win")
+        document.getElementById("Button3").disabled = true;
+        document.getElementById("Button2").disabled = true;
+        document.getElementById("Button1").disabled = true;
+    }
 }
 
-function computerplay(){
-    let myArray = ["Rock", "Paper", "Scissors"];
-    let theone = myArray[Math.floor(Math.random() * myArray.length)];
+function computerplay(){ 
+    let myArray = ["Stone", "Paper", "Scissors"];
+    let theone = myArray[Math.floor(Math.random()* myArray.length)];
     return theone;
 }
+   
 
-function playround() {
-
-    let playerSelection = window.prompt("rock, paper, scissors")
+const scissorsSelection = document.querySelector("#Button3")
+scissorsSelection.addEventListener('click', event => {
+    computerplay();
     const computerSelection = computerplay();
-    const playerSelectionUpper = (playerSelection.charAt(0).toUpperCase() + playerSelection.slice(1));
+    if (computerSelection === "Stone") {
+    computerscore++;
+    document.getElementById("computerscores").innerHTML = computerscore;
+    alert("Computer scores a point, Computer picked Stone, Stone Beats Scissors. Computer has " + computerscore + " points now");
+    winnnerAnnounce()
+    } else if (computerSelection === "Scissors") {
+        alert("Its a Draw. You both picked Scissors.");
+        } else { 
+            myscore++
+            document.getElementById("myscores").innerHTML = myscore;
+            alert("You score a point. Computer picked Paper, Scissors Beats Paper. I have " + myscore + " points now" );
+            winnnerAnnounce()
+        }
+
+
+    });
+
+
+    let paperSelection = document.querySelector("#Button2")
+    paperSelection.addEventListener('click', event => {
+    computerplay();
+    const computerSelection = computerplay();
+    if (computerSelection === "Scissors") {
+    computerscore++;
+    document.getElementById("computerscores").innerHTML = computerscore;
+    alert("Computer scores a point, Computer picked Scissors, Scissors Beats Paper. Computer has " + computerscore + " points now");
+    winnnerAnnounce()
+    } else if (computerSelection === "Paper") {
+        alert("Its a Draw. You both picked Paper.");
+        } else { 
+            myscore++;
+            document.getElementById("myscores").innerHTML = myscore;
+            alert ("You score a point. Computer picked Stone, Stone Beats Paper. I have " + myscore + " points now" );
+            winnnerAnnounce()
+                }
+
+});
+
+
+
+let stoneSelection = (document.querySelector("#Button1"));
+stoneSelection.addEventListener('click', event => {
+    computerplay();
+    const computerSelection = computerplay();
+    if (computerSelection === "Paper") {
+    computerscore++;
+    document.getElementById("computerscores").innerHTML = computerscore;
+    alert("Computer scores a point, Computer picked Paper, Paper Beats Stone. Computer has " + computerscore + " points now");
+    winnnerAnnounce()
+    } else if (computerSelection === "Stone") {
+        alert("Its a Draw. You both picked Stone.");
+    }       else {
+                myscore++;
+                document.getElementById("myscores").innerHTML = myscore;
+                alert ("You score a point. Computer picked Scissors, Scissors Beats Paper. I have " + myscore + " points now" );
+                winnnerAnnounce();
+                }
+});
+        
+
+
+
+
+
+
+
+
+
+
+
+   
     
 
-    if ( playerSelection === "Rock" || playerSelection === "rock" && computerSelection === "Paper" ) {
-        alert("You lose, Computer picked Paper, Paper Beats Rock.");
-    } else if ( playerSelection === "Paper" || playerSelection === "paper" && computerSelection === "Scissors" ) {
-        alert("You lose, Computer picked Scissors, Scissors Beats Paper."); }
-        else if ( playerSelection === "Scissors" || playerSelection === "scissors" && computerSelection === "Rock" ) {
-        alert("You lose, Computer picked Rock, Rock Beats Scissors."); }
-        else if ( playerSelection === computerSelection || playerSelectionUpper  === computerSelection) {
-            alert("Its a Draw.");}
-            else alert ("You Win Computer picked " + computerSelection );
+
+
+
+
+
+
+
+
+
+
+//if ( rockSelection && computerSelection === "Paper" ) {
+//    alert("You lose, Computer picked Paper, Paper Beats Rock.");
+//} else if ( PaperSelection && computerSelection === "Scissors" ) {
+//   alert("You lose, Computer picked Scissors, Scissors Beats Paper."); }
+//    else if ( scissorsSelection && computerSelection === "Rock" ) {
+//    alert("You lose, Computer picked Rock, Rock Beats Scissors."); }
+//    else if ( rockSelection && computerSelection === "Rock" || PaperSelection  && computerSelection === "Paper" || rockSelection && computerSelection === "Rock") {
+//        alert("Its a Draw.");}
+//        else alert ("You Win Computer picked " + computerSelection );
+
+//}
+
+
+//function.skip playround() {
+
+ //   let playerSelection = window.prompt("rock, paper, scissors")
+ //   const computerSelection = computerplay();
+ //   const playerSelectionUpper = (playerSelection.charAt(0).toUpperCase() + playerSelection.slice(1));
+    
+
+//    if ( playerSelection === "Rock" || playerSelection === "rock" && computerSelection === "Paper" ) {
+//        alert("You lose, Computer picked Paper, Paper Beats Rock.");
+//    } else if ( playerSelection === "Paper" || playerSelection === "paper" && computerSelection === "Scissors" ) {
+//        alert("You lose, Computer picked Scissors, Scissors Beats Paper."); }
+//        else if ( playerSelection === "Scissors" || playerSelection === "scissors" && computerSelection === "Rock" ) {
+//        alert("You lose, Computer picked Rock, Rock Beats Scissors."); }
+//        else if ( playerSelection === computerSelection || playerSelectionUpper  === computerSelection) {
+//            alert("Its a Draw.");}
+//            else alert ("You Win Computer picked " + computerSelection );
         
 
 
     
 
-    console.log(computerSelection, playerSelection )
-}
+//    console.log(computerSelection, playerSelection )
+//}
 
 
 
-game();
+
 
 </script>
 </html>
