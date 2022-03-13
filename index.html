@@ -92,7 +92,7 @@ scissorsSelection.addEventListener('click', event => {
         } else { 
             myscore++;
             document.getElementById("myscores").innerHTML = myscore;
-            alert ("You score a point. Computer picked Stone, Stone Beats Paper. I have " + myscore + " points now" );
+            alert ("You score a point. Computer picked Stone, Paper Beats Stone. I have " + myscore + " points now" );
             winnnerAnnounce()
                 }
 
@@ -114,7 +114,7 @@ stoneSelection.addEventListener('click', event => {
     }       else {
                 myscore++;
                 document.getElementById("myscores").innerHTML = myscore;
-                alert ("You score a point. Computer picked Scissors, Scissors Beats Paper. I have " + myscore + " points now" );
+                alert ("You score a point. Computer picked Scissors, Stone Beats Scissors. I have " + myscore + " points now" );
                 winnnerAnnounce();
                 }
 });
